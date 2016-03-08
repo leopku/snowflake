@@ -6,7 +6,7 @@
   <link rel="stylesheet" media="all" href="../../doc-style.css" />
   <script src="../../doc-filelist.js"></script>
   <script>
-    var relativeDir = "../../", thisFile = "Users/barton/projects/MFV/snowflake//reducers/auth/authReducer.js", defaultSidebar = true;
+    var relativeDir = "../../", thisFile = "Users/barton/projects/MFV/snowflake-pullrequest/snowflake//reducers/auth/authReducer.js", defaultSidebar = true;
   </script>
   <script src="../../doc-script.js"></script>
 </head>
@@ -100,9 +100,9 @@ formValidation for setting the form's valid flag</p>
 </div>
         </td>
         <td class="code highlight"><div class="highlight"><pre>
-<span class="kr">import</span> <span class="nx">InitialState</span> <span class="nx">from</span> <span class="s1">&#39;./authInitialState&#39;</span><span class="p">;</span>
-<span class="kr">import</span> <span class="nx">fieldValidation</span> <span class="nx">from</span> <span class="s1">&#39;../../lib/fieldValidation&#39;</span><span class="p">;</span>
-<span class="kr">import</span> <span class="nx">formValidation</span> <span class="nx">from</span> <span class="s1">&#39;./authFormValidation&#39;</span><span class="p">;</span>
+<span class="kr">const</span> <span class="nx">InitialState</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">&#39;./authInitialState&#39;</span><span class="p">).</span><span class="k">default</span><span class="p">;</span>
+<span class="kr">const</span> <span class="nx">fieldValidation</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">&#39;../../lib/fieldValidation&#39;</span><span class="p">).</span><span class="k">default</span><span class="p">;</span>
+<span class="kr">const</span> <span class="nx">formValidation</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">&#39;./authFormValidation&#39;</span><span class="p">).</span><span class="k">default</span><span class="p">;</span>
 
 
 </pre></div>
@@ -124,15 +124,18 @@ formValidation for setting the form's valid flag</p>
 </div>
         </td>
         <td class="code highlight"><div class="highlight"><pre>
-<span class="kr">import</span> <span class="p">{</span>
+<span class="kr">const</span> <span class="p">{</span>
   <span class="nx">SESSION_TOKEN_REQUEST</span><span class="p">,</span>
   <span class="nx">SESSION_TOKEN_SUCCESS</span><span class="p">,</span>
   <span class="nx">SESSION_TOKEN_FAILURE</span><span class="p">,</span>
+  
+  <span class="nx">DELETE_TOKEN_REQUEST</span><span class="p">,</span>
+  <span class="nx">DELETE_TOKEN_SUCCESS</span><span class="p">,</span>
 
-  <span class="nx">LOGIN_STATE_LOGOUT</span><span class="p">,</span>
-  <span class="nx">LOGIN_STATE_REGISTER</span><span class="p">,</span>
-  <span class="nx">LOGIN_STATE_LOGIN</span><span class="p">,</span>
-  <span class="nx">LOGIN_STATE_FORGOT_PASSWORD</span><span class="p">,</span>
+  <span class="nx">LOGOUT</span><span class="p">,</span>
+  <span class="nx">REGISTER</span><span class="p">,</span>
+  <span class="nx">LOGIN</span><span class="p">,</span>
+  <span class="nx">FORGOT_PASSWORD</span><span class="p">,</span>
 
   <span class="nx">LOGOUT_REQUEST</span><span class="p">,</span>
   <span class="nx">LOGOUT_SUCCESS</span><span class="p">,</span>
@@ -152,7 +155,7 @@ formValidation for setting the form's valid flag</p>
   <span class="nx">RESET_PASSWORD_FAILURE</span><span class="p">,</span>
 
   <span class="nx">SET_STATE</span>
-<span class="p">}</span> <span class="nx">from</span> <span class="s1">&#39;../../lib/constants&#39;</span><span class="p">;</span>
+<span class="p">}</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">&#39;../../lib/constants&#39;</span><span class="p">).</span><span class="k">default</span><span class="p">;</span>
 
 <span class="kr">const</span> <span class="nx">initialState</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">InitialState</span><span class="p">;</span>
 
@@ -194,8 +197,8 @@ formValidation for setting the form's valid flag</p>
         <td class="code highlight"><div class="highlight"><pre>
 <span class="kr">export</span> <span class="k">default</span> <span class="kd">function</span> <span class="nx">authReducer</span><span class="p">(</span><span class="nx">state</span> <span class="o">=</span> <span class="nx">initialState</span><span class="p">,</span> <span class="nx">action</span><span class="p">)</span> <span class="p">{</span>
   <span class="k">if</span> <span class="p">(</span><span class="o">!</span><span class="p">(</span><span class="nx">state</span> <span class="k">instanceof</span> <span class="nx">InitialState</span><span class="p">))</span> <span class="k">return</span> <span class="nx">initialState</span><span class="p">.</span><span class="nx">mergeDeep</span><span class="p">(</span><span class="nx">state</span><span class="p">);</span>
-  <span class="k">switch</span> <span class="p">(</span><span class="nx">action</span><span class="p">.</span><span class="nx">type</span><span class="p">)</span> <span class="p">{</span>
 
+  <span class="k">switch</span> <span class="p">(</span><span class="nx">action</span><span class="p">.</span><span class="nx">type</span><span class="p">)</span> <span class="p">{</span>
 
 </pre></div>
         </td>
@@ -250,7 +253,7 @@ Clear the form's error and all the fields</p>
 </div>
         </td>
         <td class="code highlight"><div class="highlight"><pre>
-  <span class="k">case</span> <span class="nx">LOGIN_STATE_LOGOUT</span><span class="o">:</span>
+  <span class="k">case</span> <span class="nx">LOGOUT</span><span class="o">:</span>
     <span class="k">return</span> <span class="nx">formValidation</span><span class="p">(</span>
       <span class="nx">state</span><span class="p">.</span><span class="nx">setIn</span><span class="p">([</span><span class="s1">&#39;form&#39;</span><span class="p">,</span> <span class="s1">&#39;state&#39;</span><span class="p">],</span> <span class="nx">action</span><span class="p">.</span><span class="nx">type</span><span class="p">)</span>
         <span class="p">.</span><span class="nx">setIn</span><span class="p">([</span><span class="s1">&#39;form&#39;</span><span class="p">,</span><span class="s1">&#39;error&#39;</span><span class="p">],</span><span class="kc">null</span><span class="p">)</span>
@@ -283,9 +286,9 @@ login, register or reset password</p>
 </div>
         </td>
         <td class="code highlight"><div class="highlight"><pre>
-  <span class="k">case</span> <span class="nx">LOGIN_STATE_LOGIN</span><span class="o">:</span>
-  <span class="k">case</span> <span class="nx">LOGIN_STATE_REGISTER</span><span class="o">:</span>
-  <span class="k">case</span> <span class="nx">LOGIN_STATE_FORGOT_PASSWORD</span><span class="o">:</span>
+  <span class="k">case</span> <span class="nx">LOGIN</span><span class="o">:</span>
+  <span class="k">case</span> <span class="nx">REGISTER</span><span class="o">:</span>
+  <span class="k">case</span> <span class="nx">FORGOT_PASSWORD</span><span class="o">:</span>
     <span class="k">return</span> <span class="nx">formValidation</span><span class="p">(</span>
       <span class="nx">state</span><span class="p">.</span><span class="nx">setIn</span><span class="p">([</span><span class="s1">&#39;form&#39;</span><span class="p">,</span> <span class="s1">&#39;state&#39;</span><span class="p">],</span> <span class="nx">action</span><span class="p">.</span><span class="nx">type</span><span class="p">)</span>
         <span class="p">.</span><span class="nx">setIn</span><span class="p">([</span><span class="s1">&#39;form&#39;</span><span class="p">,</span><span class="s1">&#39;error&#39;</span><span class="p">],</span><span class="kc">null</span><span class="p">)</span>
@@ -406,6 +409,7 @@ for display to the user</p>
         </td>
         <td class="code highlight"><div class="highlight"><pre>
   <span class="k">case</span> <span class="nx">SET_STATE</span><span class="o">:</span>
+    <span class="kr">debugger</span><span class="p">;</span>
     <span class="kd">var</span> <span class="nx">form</span> <span class="o">=</span> <span class="nx">JSON</span><span class="p">.</span><span class="nx">parse</span><span class="p">(</span><span class="nx">action</span><span class="p">.</span><span class="nx">payload</span><span class="p">).</span><span class="nx">auth</span><span class="p">.</span><span class="nx">form</span><span class="p">;</span>
     
     <span class="kd">var</span> <span class="nx">next</span> <span class="o">=</span> <span class="nx">state</span><span class="p">.</span><span class="nx">setIn</span><span class="p">([</span><span class="s1">&#39;form&#39;</span><span class="p">,</span><span class="s1">&#39;state&#39;</span><span class="p">],</span><span class="nx">form</span><span class="p">.</span><span class="nx">state</span><span class="p">)</span>
@@ -423,7 +427,28 @@ for display to the user</p>
           <span class="p">.</span><span class="nx">setIn</span><span class="p">([</span><span class="s1">&#39;form&#39;</span><span class="p">,</span><span class="s1">&#39;fields&#39;</span><span class="p">,</span><span class="s1">&#39;passwordAgainHasError&#39;</span><span class="p">],</span><span class="nx">form</span><span class="p">.</span><span class="nx">fields</span><span class="p">.</span><span class="nx">passwordAgainHasError</span><span class="p">);</span>
     
     <span class="k">return</span> <span class="nx">next</span><span class="p">;</span>
-    
+  
+    <span class="k">case</span> <span class="nx">DELETE_TOKEN_REQUEST</span><span class="o">:</span>
+    <span class="k">case</span> <span class="nx">DELETE_TOKEN_SUCCESS</span><span class="o">:</span>
+
+</pre></div>
+        </td>
+      </tr>
+      <tr>
+        <td class="docs">
+<div class="pilwrap">
+  <a class="pilcrow" href="#section-12" id="section-12">&#182;</a>
+</div>
+<div class="dox">
+  <div class="summary"><p>no state change, just an ability to track action requests...</p>
+  </div>
+  <div class="body">
+  </div>
+</div>
+        </td>
+        <td class="code highlight"><div class="highlight"><pre>
+        <span class="k">return</span> <span class="nx">state</span><span class="p">;</span>
+        
   <span class="p">}</span>    
 
 </pre></div>

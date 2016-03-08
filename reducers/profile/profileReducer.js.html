@@ -6,7 +6,7 @@
   <link rel="stylesheet" media="all" href="../../doc-style.css" />
   <script src="../../doc-filelist.js"></script>
   <script>
-    var relativeDir = "../../", thisFile = "Users/barton/projects/MFV/snowflake//reducers/profile/profileReducer.js", defaultSidebar = true;
+    var relativeDir = "../../", thisFile = "Users/barton/projects/MFV/snowflake-pullrequest/snowflake//reducers/profile/profileReducer.js", defaultSidebar = true;
   </script>
   <script src="../../doc-script.js"></script>
 </head>
@@ -98,8 +98,8 @@ formValidation for setting the form's valid flag</p>
 </div>
         </td>
         <td class="code highlight"><div class="highlight"><pre>
-<span class="kr">import</span> <span class="nx">fieldValidation</span> <span class="nx">from</span> <span class="s1">&#39;../../lib/fieldValidation&#39;</span><span class="p">;</span>
-<span class="kr">import</span> <span class="nx">formValidation</span> <span class="nx">from</span> <span class="s1">&#39;./profileFormValidation&#39;</span><span class="p">;</span>
+<span class="kr">const</span> <span class="nx">fieldValidation</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">&#39;../../lib/fieldValidation&#39;</span><span class="p">).</span><span class="k">default</span><span class="p">;</span>
+<span class="kr">const</span> <span class="nx">formValidation</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">&#39;./profileFormValidation&#39;</span><span class="p">).</span><span class="k">default</span><span class="p">;</span>
 
 
 </pre></div>
@@ -121,7 +121,7 @@ formValidation for setting the form's valid flag</p>
 </div>
         </td>
         <td class="code highlight"><div class="highlight"><pre>
-<span class="kr">import</span> <span class="p">{</span>
+<span class="kr">const</span> <span class="p">{</span>
   <span class="nx">ON_PROFILE_FORM_FIELD_CHANGE</span><span class="p">,</span>
   <span class="nx">GET_PROFILE_REQUEST</span><span class="p">,</span>
   <span class="nx">GET_PROFILE_SUCCESS</span><span class="p">,</span>
@@ -130,9 +130,11 @@ formValidation for setting the form's valid flag</p>
   <span class="nx">PROFILE_UPDATE_REQUEST</span><span class="p">,</span>
   <span class="nx">PROFILE_UPDATE_SUCCESS</span><span class="p">,</span>
   <span class="nx">PROFILE_UPDATE_FAILURE</span><span class="p">,</span>
+  
+  <span class="nx">LOGOUT_SUCCESS</span><span class="p">,</span>
 
   <span class="nx">SET_STATE</span>
-<span class="p">}</span> <span class="nx">from</span> <span class="s1">&#39;../../lib/constants&#39;</span><span class="p">;</span>
+<span class="p">}</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">&#39;../../lib/constants&#39;</span><span class="p">).</span><span class="k">default</span><span class="p">;</span>
 
 
 </pre></div>
@@ -154,7 +156,7 @@ formValidation for setting the form's valid flag</p>
 </div>
         </td>
         <td class="code highlight"><div class="highlight"><pre>
-<span class="kr">import</span> <span class="nx">InitialState</span> <span class="nx">from</span> <span class="s1">&#39;./profileInitialState&#39;</span><span class="p">;</span>
+<span class="kr">const</span> <span class="nx">InitialState</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">&#39;./profileInitialState&#39;</span><span class="p">).</span><span class="k">default</span><span class="p">;</span>
 <span class="kr">const</span> <span class="nx">initialState</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">InitialState</span><span class="p">;</span>
 
 
@@ -195,6 +197,8 @@ formValidation for setting the form's valid flag</p>
         </td>
         <td class="code highlight"><div class="highlight"><pre>
 <span class="kr">export</span> <span class="k">default</span> <span class="kd">function</span> <span class="nx">profileReducer</span><span class="p">(</span><span class="nx">state</span> <span class="o">=</span> <span class="nx">initialState</span><span class="p">,</span> <span class="nx">action</span><span class="p">)</span> <span class="p">{</span>
+  <span class="kd">let</span> <span class="nx">nextProfileState</span> <span class="o">=</span> <span class="kc">null</span><span class="p">;</span>
+
   <span class="k">if</span> <span class="p">(</span><span class="o">!</span><span class="p">(</span><span class="nx">state</span> <span class="k">instanceof</span> <span class="nx">InitialState</span><span class="p">))</span> <span class="k">return</span> <span class="nx">initialState</span><span class="p">.</span><span class="nx">mergeDeep</span><span class="p">(</span><span class="nx">state</span><span class="p">);</span>
 
   <span class="k">switch</span> <span class="p">(</span><span class="nx">action</span><span class="p">.</span><span class="nx">type</span><span class="p">)</span> <span class="p">{</span>
@@ -274,7 +278,7 @@ mung it up through some other mechanism</p>
         </td>
         <td class="code highlight"><div class="highlight"><pre>
   <span class="k">case</span> <span class="nx">GET_PROFILE_SUCCESS</span><span class="o">:</span>
-    <span class="kd">let</span> <span class="nx">nextProfileState</span> <span class="o">=</span> <span class="nx">state</span><span class="p">.</span><span class="nx">setIn</span><span class="p">([</span><span class="s1">&#39;form&#39;</span><span class="p">,</span> <span class="s1">&#39;isFetching&#39;</span><span class="p">],</span> <span class="kc">false</span><span class="p">)</span>
+    <span class="nx">nextProfileState</span> <span class="o">=</span> <span class="nx">state</span><span class="p">.</span><span class="nx">setIn</span><span class="p">([</span><span class="s1">&#39;form&#39;</span><span class="p">,</span> <span class="s1">&#39;isFetching&#39;</span><span class="p">],</span> <span class="kc">false</span><span class="p">)</span>
       <span class="p">.</span><span class="nx">setIn</span><span class="p">([</span><span class="s1">&#39;form&#39;</span><span class="p">,</span><span class="s1">&#39;fields&#39;</span><span class="p">,</span><span class="s1">&#39;username&#39;</span><span class="p">],</span> <span class="nx">action</span><span class="p">.</span><span class="nx">payload</span><span class="p">.</span><span class="nx">username</span><span class="p">)</span>
       <span class="p">.</span><span class="nx">setIn</span><span class="p">([</span><span class="s1">&#39;form&#39;</span><span class="p">,</span><span class="s1">&#39;fields&#39;</span><span class="p">,</span><span class="s1">&#39;email&#39;</span><span class="p">],</span> <span class="nx">action</span><span class="p">.</span><span class="nx">payload</span><span class="p">.</span><span class="nx">email</span><span class="p">)</span>
       <span class="p">.</span><span class="nx">setIn</span><span class="p">([</span><span class="s1">&#39;form&#39;</span><span class="p">,</span><span class="s1">&#39;fields&#39;</span><span class="p">,</span><span class="s1">&#39;emailVerified&#39;</span><span class="p">],</span>
@@ -288,6 +292,34 @@ mung it up through some other mechanism</p>
     <span class="k">return</span> <span class="nx">formValidation</span><span class="p">(</span>
       <span class="nx">fieldValidation</span><span class="p">(</span> <span class="nx">nextProfileState</span><span class="p">,</span> <span class="nx">action</span><span class="p">)</span>
       <span class="p">,</span> <span class="nx">action</span><span class="p">);</span>
+    
+
+</pre></div>
+        </td>
+      </tr>
+      <tr>
+        <td class="docs">
+<div class="pilwrap">
+  <a class="pilcrow" href="#section-9" id="section-9">&#182;</a>
+</div>
+<div class="dox">
+  <div class="summary"><p>User logged out, so reset form fields and original profile.</p>
+  </div>
+  <div class="body">
+  </div>
+</div>
+        </td>
+        <td class="code highlight"><div class="highlight"><pre>
+  <span class="k">case</span> <span class="nx">LOGOUT_SUCCESS</span><span class="o">:</span>
+    <span class="nx">nextProfileState</span> <span class="o">=</span> <span class="nx">state</span><span class="p">.</span><span class="nx">setIn</span><span class="p">([</span><span class="s1">&#39;form&#39;</span><span class="p">,</span><span class="s1">&#39;fields&#39;</span><span class="p">,</span><span class="s1">&#39;username&#39;</span><span class="p">],</span> <span class="s1">&#39;&#39;</span><span class="p">)</span>   
+      <span class="p">.</span><span class="nx">setIn</span><span class="p">([</span><span class="s1">&#39;form&#39;</span><span class="p">,</span><span class="s1">&#39;fields&#39;</span><span class="p">,</span><span class="s1">&#39;email&#39;</span><span class="p">],</span> <span class="s1">&#39;&#39;</span><span class="p">)</span>
+      <span class="p">.</span><span class="nx">setIn</span><span class="p">([</span><span class="s1">&#39;form&#39;</span><span class="p">,</span><span class="s1">&#39;fields&#39;</span><span class="p">,</span><span class="s1">&#39;emailVerified&#39;</span><span class="p">],</span> <span class="kc">false</span><span class="p">)</span>
+      <span class="p">.</span><span class="nx">setIn</span><span class="p">([</span><span class="s1">&#39;form&#39;</span><span class="p">,</span><span class="s1">&#39;originalProfile&#39;</span><span class="p">,</span><span class="s1">&#39;username&#39;</span><span class="p">],</span><span class="s1">&#39;&#39;</span><span class="p">)</span>
+      <span class="p">.</span><span class="nx">setIn</span><span class="p">([</span><span class="s1">&#39;form&#39;</span><span class="p">,</span><span class="s1">&#39;originalProfile&#39;</span><span class="p">,</span><span class="s1">&#39;email&#39;</span><span class="p">],</span><span class="s1">&#39;&#39;</span><span class="p">)</span>
+      <span class="p">.</span><span class="nx">setIn</span><span class="p">([</span><span class="s1">&#39;form&#39;</span><span class="p">,</span><span class="s1">&#39;originalProfile&#39;</span><span class="p">,</span><span class="s1">&#39;emailVerified&#39;</span><span class="p">],</span><span class="kc">false</span><span class="p">)</span>
+      <span class="p">.</span><span class="nx">setIn</span><span class="p">([</span><span class="s1">&#39;form&#39;</span><span class="p">,</span><span class="s1">&#39;originalProfile&#39;</span><span class="p">,</span><span class="s1">&#39;objectId&#39;</span><span class="p">],</span><span class="kc">null</span><span class="p">)</span>
+      <span class="p">.</span><span class="nx">setIn</span><span class="p">([</span><span class="s1">&#39;form&#39;</span><span class="p">,</span><span class="s1">&#39;error&#39;</span><span class="p">],</span><span class="kc">null</span><span class="p">);</span>
+    <span class="k">return</span> <span class="nx">formValidation</span><span class="p">(</span> <span class="nx">nextProfileState</span><span class="p">,</span> <span class="nx">action</span><span class="p">);</span>
 
 
 </pre></div>
@@ -370,6 +402,7 @@ and set the values into the state</p>
         </td>
         <td class="code highlight"><div class="highlight"><pre>
   <span class="k">case</span> <span class="nx">SET_STATE</span><span class="o">:</span>
+    <span class="kr">debugger</span><span class="p">;</span>
     <span class="kd">var</span> <span class="nx">profile</span>  <span class="o">=</span> <span class="nx">JSON</span><span class="p">.</span><span class="nx">parse</span><span class="p">(</span><span class="nx">action</span><span class="p">.</span><span class="nx">payload</span><span class="p">).</span><span class="nx">profile</span><span class="p">.</span><span class="nx">form</span><span class="p">;</span>
     <span class="kd">var</span> <span class="nx">next</span> <span class="o">=</span> <span class="nx">state</span><span class="p">.</span><span class="nx">setIn</span><span class="p">([</span><span class="s1">&#39;form&#39;</span><span class="p">,</span><span class="s1">&#39;disabled&#39;</span><span class="p">],</span><span class="nx">profile</span><span class="p">.</span><span class="nx">disabled</span><span class="p">)</span>
           <span class="p">.</span><span class="nx">setIn</span><span class="p">([</span><span class="s1">&#39;form&#39;</span><span class="p">,</span><span class="s1">&#39;error&#39;</span><span class="p">],</span><span class="nx">profile</span><span class="p">.</span><span class="nx">error</span><span class="p">)</span>

@@ -6,7 +6,7 @@
   <link rel="stylesheet" media="all" href="../../doc-style.css" />
   <script src="../../doc-filelist.js"></script>
   <script>
-    var relativeDir = "../../", thisFile = "Users/barton/projects/MFV/snowflake//components/__tests__/ErrorAlert-test.js", defaultSidebar = true;
+    var relativeDir = "../../", thisFile = "Users/barton/projects/MFV/snowflake-pullrequest/snowflake//components/__tests__/ErrorAlert-test.js", defaultSidebar = true;
   </script>
   <script src="../../doc-script.js"></script>
 </head>
@@ -81,6 +81,7 @@ correct error message</p>
 </div>
         </td>
         <td class="code highlight"><div class="highlight"><pre>
+
 <span class="nx">jest</span><span class="p">.</span><span class="nx">autoMockOff</span><span class="p">();</span>
 <span class="nx">jest</span><span class="p">.</span><span class="nx">mock</span><span class="p">(</span><span class="s1">&#39;react-native-simpledialog-android&#39;</span><span class="p">);</span>
 
@@ -151,7 +152,6 @@ correct error message</p>
 <span class="nx">describe</span><span class="p">(</span><span class="s1">&#39;ErrorAlert&#39;</span><span class="p">,</span> <span class="p">()</span> <span class="o">=&gt;</span> <span class="p">{</span>
   <span class="nx">it</span><span class="p">(</span><span class="s1">&#39;should be fine&#39;</span><span class="p">,</span> <span class="p">()</span> <span class="o">=&gt;</span> <span class="p">{</span>
 
-
 </pre></div>
         </td>
       </tr>
@@ -198,7 +198,7 @@ and the alert matches the props error</p>
 </div>
         </td>
         <td class="code highlight"><div class="highlight"><pre>
-    <span class="k">new</span> <span class="nx">ErrorAlert</span><span class="p">(</span><span class="nx">SimpleAlert</span><span class="p">).</span><span class="nx">checkError</span><span class="p">(</span><span class="nx">errorAlertProps</span><span class="p">);</span>
+    <span class="k">new</span> <span class="nx">ErrorAlert</span><span class="p">().</span><span class="nx">checkError</span><span class="p">(</span><span class="nx">errorAlertProps</span><span class="p">);</span>
     <span class="nx">expect</span><span class="p">(</span><span class="nx">SimpleAlert</span><span class="p">.</span><span class="nx">alert</span><span class="p">.</span><span class="nx">mock</span><span class="p">.</span><span class="nx">calls</span><span class="p">[</span><span class="mi">0</span><span class="p">][</span><span class="mi">0</span><span class="p">]).</span><span class="nx">toEqual</span><span class="p">(</span><span class="s1">&#39;Error&#39;</span><span class="p">);</span>
     <span class="nx">expect</span><span class="p">(</span><span class="nx">SimpleAlert</span><span class="p">.</span><span class="nx">alert</span><span class="p">.</span><span class="nx">mock</span><span class="p">.</span><span class="nx">calls</span><span class="p">[</span><span class="mi">0</span><span class="p">][</span><span class="mi">1</span><span class="p">]).</span><span class="nx">toEqual</span><span class="p">(</span><span class="nx">errorAlertProps</span><span class="p">.</span><span class="nx">error</span><span class="p">.</span><span class="nx">error</span><span class="p">);</span>
   <span class="p">});</span>

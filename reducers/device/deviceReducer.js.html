@@ -6,7 +6,7 @@
   <link rel="stylesheet" media="all" href="../../doc-style.css" />
   <script src="../../doc-filelist.js"></script>
   <script>
-    var relativeDir = "../../", thisFile = "Users/barton/projects/MFV/snowflake//reducers/device/deviceReducer.js", defaultSidebar = true;
+    var relativeDir = "../../", thisFile = "Users/barton/projects/MFV/snowflake-pullrequest/snowflake//reducers/device/deviceReducer.js", defaultSidebar = true;
   </script>
   <script src="../../doc-script.js"></script>
 </head>
@@ -19,7 +19,7 @@
     <div id="tree"></div>
     <div id="headings">
       <div class="heading h1">
-        <a href="#authreducer.js">authReducer.js</a>
+        <a href="#devicereducer.js">deviceReducer.js</a>
       </div>
       <div class="heading h2">
         <a href="#imports">Imports</a>
@@ -33,9 +33,6 @@
       <div class="heading h3">
         <a href="#set%20the%20version%20in%20the%20state">set the version in the state</a>
       </div>
-      <div class="heading h3">
-        <a href="#restore%20your%20state">restore your state</a>
-      </div>
     </div>
   </div>
   <div id="sidebar-toggle"></div>
@@ -45,10 +42,10 @@
       <tr>
         <td class="docs"><div class="dox">
   <div class="summary">
-<div class="pilwrap" id="authreducer.js">
+<div class="pilwrap" id="devicereducer.js">
   <h1>
-    <a href="#authreducer.js" name="authreducer.js" class="pilcrow">&#182;</a>
-    authReducer.js
+    <a href="#devicereducer.js" name="devicereducer.js" class="pilcrow">&#182;</a>
+    deviceReducer.js
   </h1>
 </div>
 
@@ -73,7 +70,7 @@
 </div>
 
   </div>
-  <div class="body"><p>InitialState </p>
+  <div class="body"><p>InitialState</p>
   </div>
 </div>
         </td>
@@ -97,11 +94,10 @@
 </div>
         </td>
         <td class="code highlight"><div class="highlight"><pre>
-<span class="kr">import</span> <span class="p">{</span>
+<span class="kr">const</span> <span class="p">{</span>
   <span class="nx">SET_PLATFORM</span><span class="p">,</span>
-  <span class="nx">SET_VERSION</span><span class="p">,</span>
-  <span class="nx">SET_STATE</span>
-<span class="p">}</span> <span class="nx">from</span> <span class="s1">&#39;../../lib/constants&#39;</span><span class="p">;</span>
+  <span class="nx">SET_VERSION</span>
+<span class="p">}</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">&#39;../../lib/constants&#39;</span><span class="p">).</span><span class="k">default</span><span class="p">;</span>
 
 <span class="kr">const</span> <span class="nx">initialState</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">InitialState</span><span class="p">;</span>
 
@@ -128,7 +124,7 @@
       <span class="dox_tag_name">state</span>
       <span class="dox_type">Object</span>
       <span><ul>
-<li>initialState </li>
+<li>initialState</li>
 </ul></span>
     </div>
     <div class="dox_tag_detail">
@@ -146,7 +142,7 @@
   <span class="k">if</span> <span class="p">(</span><span class="o">!</span><span class="p">(</span><span class="nx">state</span> <span class="k">instanceof</span> <span class="nx">InitialState</span><span class="p">))</span> <span class="k">return</span> <span class="nx">initialState</span><span class="p">.</span><span class="nx">merge</span><span class="p">(</span><span class="nx">state</span><span class="p">);</span>
 
   <span class="k">switch</span> <span class="p">(</span><span class="nx">action</span><span class="p">.</span><span class="nx">type</span><span class="p">)</span> <span class="p">{</span>
-    
+
 
 </pre></div>
         </td>
@@ -167,8 +163,8 @@
 </div>
         </td>
         <td class="code highlight"><div class="highlight"><pre>
-  <span class="k">case</span> <span class="nx">SET_PLATFORM</span><span class="o">:</span> 
-    <span class="kr">const</span> <span class="p">{</span><span class="nx">platform</span><span class="p">}</span> <span class="o">=</span> <span class="nx">action</span><span class="p">.</span><span class="nx">payload</span><span class="p">;</span>
+  <span class="k">case</span> <span class="nx">SET_PLATFORM</span><span class="o">:</span>
+    <span class="kr">const</span> <span class="nx">platform</span> <span class="o">=</span> <span class="nx">action</span><span class="p">.</span><span class="nx">payload</span><span class="p">;</span>
     <span class="k">return</span> <span class="nx">state</span><span class="p">.</span><span class="nx">set</span><span class="p">(</span><span class="s1">&#39;platform&#39;</span><span class="p">,</span> <span class="nx">platform</span><span class="p">);</span>
 
 
@@ -191,36 +187,9 @@
 </div>
         </td>
         <td class="code highlight"><div class="highlight"><pre>
-  <span class="k">case</span> <span class="nx">SET_VERSION</span><span class="o">:</span> 
-    <span class="kr">const</span> <span class="p">{</span><span class="nx">version</span><span class="p">}</span> <span class="o">=</span> <span class="nx">action</span><span class="p">.</span><span class="nx">payload</span><span class="p">;</span>
+  <span class="k">case</span> <span class="nx">SET_VERSION</span><span class="o">:</span>
+    <span class="kr">const</span> <span class="nx">version</span> <span class="o">=</span> <span class="nx">action</span><span class="p">.</span><span class="nx">payload</span><span class="p">;</span>
     <span class="k">return</span> <span class="nx">state</span><span class="p">.</span><span class="nx">set</span><span class="p">(</span><span class="s1">&#39;version&#39;</span><span class="p">,</span> <span class="nx">version</span><span class="p">);</span>
-
-
-</pre></div>
-        </td>
-      </tr>
-      <tr>
-        <td class="docs"><div class="dox">
-  <div class="summary">
-<div class="pilwrap" id="restore%20your%20state">
-  <h3>
-    <a href="#restore%20your%20state" name="restore%20your%20state" class="pilcrow">&#182;</a>
-    restore your state
-  </h3>
-</div>
-
-  </div>
-  <div class="body"><p>Support for Hot Loading</p>
-  </div>
-</div>
-        </td>
-        <td class="code highlight"><div class="highlight"><pre>
-  <span class="k">case</span> <span class="nx">SET_STATE</span><span class="o">:</span>
-    <span class="kr">const</span> <span class="nx">device</span> <span class="o">=</span> <span class="nx">JSON</span><span class="p">.</span><span class="nx">parse</span><span class="p">(</span><span class="nx">action</span><span class="p">.</span><span class="nx">payload</span><span class="p">).</span><span class="nx">device</span><span class="p">;</span>
-    <span class="kd">var</span> <span class="nx">next</span> <span class="o">=</span> <span class="nx">state</span><span class="p">.</span><span class="nx">set</span><span class="p">(</span><span class="s1">&#39;isMobile&#39;</span><span class="p">,</span><span class="nx">device</span><span class="p">.</span><span class="nx">isMobile</span><span class="p">)</span>
-          <span class="p">.</span><span class="nx">set</span><span class="p">(</span><span class="s1">&#39;platform&#39;</span><span class="p">,</span><span class="nx">device</span><span class="p">.</span><span class="nx">platform</span><span class="p">)</span>
-          <span class="p">.</span><span class="nx">set</span><span class="p">(</span><span class="s1">&#39;version&#39;</span><span class="p">,</span><span class="nx">device</span><span class="p">.</span><span class="nx">version</span><span class="p">);</span>
-    <span class="k">return</span> <span class="nx">next</span><span class="p">;</span>
   <span class="p">}</span>
 
   <span class="k">return</span> <span class="nx">state</span><span class="p">;</span>

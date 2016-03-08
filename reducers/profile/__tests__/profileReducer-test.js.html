@@ -6,7 +6,7 @@
   <link rel="stylesheet" media="all" href="../../../doc-style.css" />
   <script src="../../../doc-filelist.js"></script>
   <script>
-    var relativeDir = "../../../", thisFile = "Users/barton/projects/MFV/snowflake//reducers/profile/__tests__/profileReducer-test.js", defaultSidebar = true;
+    var relativeDir = "../../../", thisFile = "Users/barton/projects/MFV/snowflake-pullrequest/snowflake//reducers/profile/__tests__/profileReducer-test.js", defaultSidebar = true;
   </script>
   <script src="../../../doc-script.js"></script>
 </head>
@@ -88,6 +88,7 @@ payload, that the state object is modified accordingly.</p>
 </div>
         </td>
         <td class="code highlight"><div class="highlight"><pre><span class="s1">&#39;use strict&#39;</span><span class="p">;</span>
+
 <span class="nx">jest</span><span class="p">.</span><span class="nx">autoMockOff</span><span class="p">();</span>
 
 
@@ -110,7 +111,7 @@ payload, that the state object is modified accordingly.</p>
 </div>
         </td>
         <td class="code highlight"><div class="highlight"><pre>
-<span class="kr">import</span> <span class="p">{</span>
+<span class="kr">const</span> <span class="p">{</span>
   <span class="nx">ON_PROFILE_FORM_FIELD_CHANGE</span><span class="p">,</span>
   <span class="nx">GET_PROFILE_REQUEST</span><span class="p">,</span>
   <span class="nx">GET_PROFILE_SUCCESS</span><span class="p">,</span>
@@ -119,7 +120,7 @@ payload, that the state object is modified accordingly.</p>
   <span class="nx">PROFILE_UPDATE_REQUEST</span><span class="p">,</span>
   <span class="nx">PROFILE_UPDATE_SUCCESS</span><span class="p">,</span>
   <span class="nx">PROFILE_UPDATE_FAILURE</span>
-<span class="p">}</span> <span class="nx">from</span> <span class="s1">&#39;../../../lib/constants&#39;</span><span class="p">;</span>
+<span class="p">}</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">&#39;../../../lib/constants&#39;</span><span class="p">).</span><span class="k">default</span><span class="p">;</span>
 
 
 </pre></div>
@@ -141,7 +142,7 @@ payload, that the state object is modified accordingly.</p>
 </div>
         </td>
         <td class="code highlight"><div class="highlight"><pre>
-<span class="kr">const</span>  <span class="nx">profileReducer</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">&#39;../profileReducer&#39;</span><span class="p">);</span>
+<span class="kr">const</span>  <span class="nx">profileReducer</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">&#39;../profileReducer&#39;</span><span class="p">).</span><span class="k">default</span><span class="p">;</span>
 
 </pre></div>
         </td>

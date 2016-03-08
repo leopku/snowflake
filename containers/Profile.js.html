@@ -6,7 +6,7 @@
   <link rel="stylesheet" media="all" href="../doc-style.css" />
   <script src="../doc-filelist.js"></script>
   <script>
-    var relativeDir = "../", thisFile = "Users/barton/projects/MFV/snowflake//containers/Profile.js", defaultSidebar = true;
+    var relativeDir = "../", thisFile = "Users/barton/projects/MFV/snowflake-pullrequest/snowflake//containers/Profile.js", defaultSidebar = true;
   </script>
   <script src="../doc-script.js"></script>
 </head>
@@ -91,7 +91,7 @@ It too is a container so there is boilerplate from Redux similar to
         </td>
         <td class="code highlight"><div class="highlight"><pre>
 <span class="kr">import</span> <span class="p">{</span> <span class="nx">bindActionCreators</span> <span class="p">}</span> <span class="nx">from</span> <span class="s1">&#39;redux&#39;</span><span class="p">;</span>
-<span class="kr">import</span> <span class="p">{</span> <span class="nx">connect</span> <span class="p">}</span> <span class="nx">from</span> <span class="s1">&#39;react-redux/native&#39;</span><span class="p">;</span>
+<span class="kr">import</span> <span class="p">{</span> <span class="nx">connect</span> <span class="p">}</span> <span class="nx">from</span> <span class="s1">&#39;react-redux&#39;</span><span class="p">;</span>
 
 
 </pre></div>
@@ -328,8 +328,8 @@ It too is a container so there is boilerplate from Redux similar to
   <span class="p">};</span>
 <span class="p">}</span>
 
-<span class="err">@</span><span class="nx">connect</span><span class="p">(</span><span class="nx">mapStateToProps</span><span class="p">,</span> <span class="nx">mapDispatchToProps</span><span class="p">)</span>
-<span class="kr">export</span> <span class="k">default</span> <span class="kr">class</span> <span class="nx">Profile</span> <span class="kr">extends</span> <span class="nx">Component</span> <span class="p">{</span>
+
+<span class="kr">class</span> <span class="nx">Profile</span> <span class="kr">extends</span> <span class="nx">Component</span> <span class="p">{</span>
 
 </pre></div>
         </td>
@@ -599,6 +599,7 @@ for more info.</p>
     <span class="p">);</span>
   <span class="p">}</span>
 <span class="p">}</span>
+<span class="kr">export</span> <span class="k">default</span> <span class="nx">connect</span><span class="p">(</span><span class="nx">mapStateToProps</span><span class="p">,</span> <span class="nx">mapDispatchToProps</span><span class="p">)(</span><span class="nx">Profile</span><span class="p">);</span>
 </pre></div>
         </td>
       </tr>

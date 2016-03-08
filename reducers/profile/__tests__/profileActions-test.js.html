@@ -6,7 +6,7 @@
   <link rel="stylesheet" media="all" href="../../../doc-style.css" />
   <script src="../../../doc-filelist.js"></script>
   <script>
-    var relativeDir = "../../../", thisFile = "Users/barton/projects/MFV/snowflake//reducers/profile/__tests__/profileActions-test.js", defaultSidebar = true;
+    var relativeDir = "../../../", thisFile = "Users/barton/projects/MFV/snowflake-pullrequest/snowflake//reducers/profile/__tests__/profileActions-test.js", defaultSidebar = true;
   </script>
   <script src="../../../doc-script.js"></script>
 </head>
@@ -88,8 +88,7 @@ fails, setting it back to false.</p>
 <span class="nx">jest</span><span class="p">.</span><span class="nx">autoMockOff</span><span class="p">();</span>
 
 <span class="nx">jest</span><span class="p">.</span><span class="nx">mock</span><span class="p">(</span><span class="s1">&#39;../../../lib/AppAuthToken&#39;</span><span class="p">);</span>
-<span class="nx">jest</span><span class="p">.</span><span class="nx">mock</span><span class="p">(</span><span class="s1">&#39;../../../lib/Parse&#39;</span><span class="p">);</span>
-
+<span class="nx">jest</span><span class="p">.</span><span class="nx">mock</span><span class="p">(</span><span class="s1">&#39;../../../lib/BackendFactory&#39;</span><span class="p">);</span>
 
 </pre></div>
         </td>
@@ -112,8 +111,8 @@ fails, setting it back to false.</p>
 </div>
         </td>
         <td class="code highlight"><div class="highlight"><pre>
-<span class="kd">var</span> <span class="nx">mockStore</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">&#39;../../mocks/Store&#39;</span><span class="p">);</span>
-<span class="kd">var</span> <span class="nx">actions</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">&#39;../profileActions&#39;</span><span class="p">);</span>
+<span class="kr">const</span> <span class="nx">mockStore</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">&#39;../../mocks/Store&#39;</span><span class="p">).</span><span class="k">default</span><span class="p">;</span>
+<span class="kr">const</span> <span class="nx">actions</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">&#39;../profileActions&#39;</span><span class="p">);</span>
 
 
 </pre></div>
@@ -135,7 +134,7 @@ fails, setting it back to false.</p>
 </div>
         </td>
         <td class="code highlight"><div class="highlight"><pre>
-<span class="kr">import</span> <span class="p">{</span>
+<span class="kr">const</span> <span class="p">{</span>
   <span class="nx">GET_PROFILE_REQUEST</span><span class="p">,</span>
   <span class="nx">GET_PROFILE_SUCCESS</span><span class="p">,</span>
   <span class="nx">GET_PROFILE_FAILURE</span><span class="p">,</span>
@@ -146,7 +145,7 @@ fails, setting it back to false.</p>
 
   <span class="nx">ON_PROFILE_FORM_FIELD_CHANGE</span>
 
-<span class="p">}</span> <span class="nx">from</span> <span class="s1">&#39;../../../lib/constants&#39;</span><span class="p">;</span>
+<span class="p">}</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">&#39;../../../lib/constants&#39;</span><span class="p">).</span><span class="k">default</span><span class="p">;</span>
 
 
 </pre></div>
@@ -252,7 +251,7 @@ dispatched the function is invoked</p>
 </div>
         </td>
         <td class="code highlight"><div class="highlight"><pre>
-  <span class="nx">pit</span><span class="p">(</span><span class="s1">&#39;should getProfile&#39;</span><span class="p">,</span> <span class="p">()</span> <span class="o">=&gt;</span> <span class="p">{</span>
+  <span class="nx">it</span><span class="p">(</span><span class="s1">&#39;should getProfile&#39;</span><span class="p">,</span> <span class="p">()</span> <span class="o">=&gt;</span> <span class="p">{</span>
     <span class="kr">const</span> <span class="nx">expectedActions</span> <span class="o">=</span> <span class="p">[</span>
       <span class="p">{</span><span class="nx">type</span><span class="o">:</span> <span class="nx">GET_PROFILE_REQUEST</span><span class="p">},</span>
       <span class="p">{</span><span class="nx">type</span><span class="o">:</span> <span class="nx">GET_PROFILE_SUCCESS</span><span class="p">}</span>
@@ -262,7 +261,7 @@ dispatched the function is invoked</p>
     <span class="k">return</span> <span class="nx">store</span><span class="p">.</span><span class="nx">dispatch</span><span class="p">(</span><span class="nx">actions</span><span class="p">.</span><span class="nx">getProfile</span><span class="p">());</span>
   <span class="p">});</span>
 
-  <span class="nx">pit</span><span class="p">(</span><span class="s1">&#39;should updateProfile&#39;</span><span class="p">,</span> <span class="p">()</span> <span class="o">=&gt;</span> <span class="p">{</span>
+  <span class="nx">it</span><span class="p">(</span><span class="s1">&#39;should updateProfile&#39;</span><span class="p">,</span> <span class="p">()</span> <span class="o">=&gt;</span> <span class="p">{</span>
     <span class="kr">const</span> <span class="nx">expectedActions</span> <span class="o">=</span> <span class="p">[</span>
       <span class="p">{</span><span class="nx">type</span><span class="o">:</span> <span class="nx">PROFILE_UPDATE_REQUEST</span><span class="p">},</span>
       <span class="p">{</span><span class="nx">type</span><span class="o">:</span> <span class="nx">PROFILE_UPDATE_SUCCESS</span><span class="p">},</span>

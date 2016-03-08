@@ -6,7 +6,7 @@
   <link rel="stylesheet" media="all" href="../../doc-style.css" />
   <script src="../../doc-filelist.js"></script>
   <script>
-    var relativeDir = "../../", thisFile = "Users/barton/projects/MFV/snowflake//components/__tests__/LoginForm-test.js", defaultSidebar = true;
+    var relativeDir = "../../", thisFile = "Users/barton/projects/MFV/snowflake-pullrequest/snowflake//components/__tests__/LoginForm-test.js", defaultSidebar = true;
   </script>
   <script src="../../doc-script.js"></script>
 </head>
@@ -137,17 +137,15 @@ resetting the password and registration</p>
 </div>
         </td>
         <td class="code highlight"><div class="highlight"><pre>
-<span class="kr">import</span> <span class="nx">React</span><span class="p">,</span>
-<span class="p">{</span>
-<span class="p">}</span> <span class="nx">from</span> <span class="s1">&#39;react-native&#39;</span><span class="p">;</span>
+<span class="kr">const</span> <span class="nx">React</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">&#39;react-native&#39;</span><span class="p">);</span>
 
-<span class="kr">import</span> <span class="nx">utils</span> <span class="nx">from</span> <span class="s1">&#39;react-addons-test-utils&#39;</span><span class="p">;</span>
+<span class="kr">const</span> <span class="nx">utils</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">&#39;react-addons-test-utils&#39;</span><span class="p">);</span>
 
-<span class="kr">import</span> <span class="p">{</span>
-  <span class="nx">LOGIN_STATE_REGISTER</span><span class="p">,</span>
-  <span class="nx">LOGIN_STATE_LOGIN</span><span class="p">,</span>
-  <span class="nx">LOGIN_STATE_FORGOT_PASSWORD</span>
-<span class="p">}</span> <span class="nx">from</span> <span class="s1">&#39;../../lib/constants&#39;</span><span class="p">;</span>
+<span class="kr">const</span> <span class="p">{</span>
+  <span class="nx">REGISTER</span><span class="p">,</span>
+  <span class="nx">LOGIN</span><span class="p">,</span>
+  <span class="nx">FORGOT_PASSWORD</span>
+<span class="p">}</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">&#39;../../lib/constants&#39;</span><span class="p">).</span><span class="k">default</span><span class="p">;</span>
 
 
 </pre></div>
@@ -344,14 +342,16 @@ component has the correct data</p>
         <td class="code highlight"><div class="highlight"><pre>
   <span class="kd">function</span> <span class="nx">checkLoginForm</span><span class="p">(</span><span class="nx">props</span><span class="p">)</span> <span class="p">{</span>
     <span class="kr">const</span> <span class="p">{</span><span class="nx">output</span><span class="p">}</span> <span class="o">=</span> <span class="nx">renderLoginForm</span><span class="p">(</span><span class="nx">props</span><span class="p">);</span>
+
     <span class="nx">expect</span><span class="p">(</span><span class="nx">output</span><span class="p">.</span><span class="nx">type</span><span class="p">,</span><span class="nx">Form</span><span class="p">);</span>
 
     <span class="kr">const</span> <span class="nx">fields</span> <span class="o">=</span> <span class="nx">getFields</span><span class="p">(</span><span class="nx">output</span><span class="p">);</span>
     <span class="kr">const</span> <span class="nx">values</span> <span class="o">=</span> <span class="nx">getValues</span><span class="p">(</span><span class="nx">output</span><span class="p">);</span>
     
-    <span class="k">if</span> <span class="p">(</span><span class="nx">props</span><span class="p">.</span><span class="nx">form</span><span class="p">.</span><span class="nx">state</span> <span class="o">===</span> <span class="nx">LOGIN_STATE_REGISTER</span>
+    <span class="k">if</span> <span class="p">(</span><span class="nx">props</span><span class="p">.</span><span class="nx">form</span><span class="p">.</span><span class="nx">state</span> <span class="o">===</span> <span class="nx">REGISTER</span>
         <span class="o">||</span>
-        <span class="nx">props</span><span class="p">.</span><span class="nx">form</span><span class="p">.</span><span class="nx">state</span> <span class="o">===</span> <span class="nx">LOGIN_STATE_LOGIN</span><span class="p">)</span> <span class="p">{</span>
+        <span class="nx">props</span><span class="p">.</span><span class="nx">form</span><span class="p">.</span><span class="nx">state</span> <span class="o">===</span> <span class="nx">LOGIN</span><span class="p">)</span> <span class="p">{</span>
+
       <span class="nx">expect</span><span class="p">(</span><span class="nx">values</span><span class="p">.</span><span class="nx">username</span><span class="p">).</span><span class="nx">toEqual</span><span class="p">(</span><span class="nx">props</span><span class="p">.</span><span class="nx">value</span><span class="p">.</span><span class="nx">username</span><span class="p">);</span>      
       <span class="nx">expect</span><span class="p">(</span><span class="nx">fields</span><span class="p">.</span><span class="nx">username</span><span class="p">.</span><span class="nx">editable</span><span class="p">).</span><span class="nx">toEqual</span><span class="p">(</span><span class="o">!</span><span class="nx">props</span><span class="p">.</span><span class="nx">form</span><span class="p">.</span><span class="nx">isFetching</span><span class="p">);</span>
       <span class="nx">expect</span><span class="p">(</span><span class="nx">fields</span><span class="p">.</span><span class="nx">username</span><span class="p">.</span><span class="nx">hasError</span><span class="p">).</span><span class="nx">toEqual</span><span class="p">(</span><span class="nx">props</span><span class="p">.</span><span class="nx">form</span><span class="p">.</span><span class="nx">fields</span><span class="p">.</span><span class="nx">usernameHasError</span><span class="p">);</span>
@@ -362,15 +362,15 @@ component has the correct data</p>
       <span class="nx">expect</span><span class="p">(</span><span class="nx">fields</span><span class="p">.</span><span class="nx">password</span><span class="p">.</span><span class="nx">secureTextEntry</span><span class="p">).</span><span class="nx">toEqual</span><span class="p">(</span><span class="o">!</span><span class="nx">props</span><span class="p">.</span><span class="nx">form</span><span class="p">.</span><span class="nx">fields</span><span class="p">.</span><span class="nx">showPassword</span><span class="p">);</span>
     <span class="p">}</span>
     
-    <span class="k">if</span> <span class="p">(</span><span class="nx">props</span><span class="p">.</span><span class="nx">form</span><span class="p">.</span><span class="nx">state</span> <span class="o">===</span> <span class="nx">LOGIN_STATE_FORGOT_PASSWORD</span>
+    <span class="k">if</span> <span class="p">(</span><span class="nx">props</span><span class="p">.</span><span class="nx">form</span><span class="p">.</span><span class="nx">state</span> <span class="o">===</span> <span class="nx">FORGOT_PASSWORD</span>
         <span class="o">||</span>
-        <span class="nx">props</span><span class="p">.</span><span class="nx">form</span><span class="p">.</span><span class="nx">state</span> <span class="o">===</span> <span class="nx">LOGIN_STATE_REGISTER</span><span class="p">)</span> <span class="p">{</span>
+        <span class="nx">props</span><span class="p">.</span><span class="nx">form</span><span class="p">.</span><span class="nx">state</span> <span class="o">===</span> <span class="nx">REGISTER</span><span class="p">)</span> <span class="p">{</span>
       <span class="nx">expect</span><span class="p">(</span><span class="nx">values</span><span class="p">.</span><span class="nx">email</span><span class="p">).</span><span class="nx">toEqual</span><span class="p">(</span><span class="nx">props</span><span class="p">.</span><span class="nx">value</span><span class="p">.</span><span class="nx">email</span><span class="p">);</span>      
       <span class="nx">expect</span><span class="p">(</span><span class="nx">fields</span><span class="p">.</span><span class="nx">email</span><span class="p">.</span><span class="nx">editable</span><span class="p">).</span><span class="nx">toEqual</span><span class="p">(</span><span class="o">!</span><span class="nx">props</span><span class="p">.</span><span class="nx">form</span><span class="p">.</span><span class="nx">isFetching</span><span class="p">);</span>
       <span class="nx">expect</span><span class="p">(</span><span class="nx">fields</span><span class="p">.</span><span class="nx">email</span><span class="p">.</span><span class="nx">hasError</span><span class="p">).</span><span class="nx">toEqual</span><span class="p">(</span><span class="nx">props</span><span class="p">.</span><span class="nx">form</span><span class="p">.</span><span class="nx">fields</span><span class="p">.</span><span class="nx">emailHasError</span><span class="p">);</span>
     <span class="p">}</span>
 
-    <span class="k">if</span> <span class="p">(</span><span class="nx">props</span><span class="p">.</span><span class="nx">form</span><span class="p">.</span><span class="nx">state</span> <span class="o">===</span> <span class="nx">LOGIN_STATE_REGISTER</span><span class="p">)</span> <span class="p">{</span>
+    <span class="k">if</span> <span class="p">(</span><span class="nx">props</span><span class="p">.</span><span class="nx">form</span><span class="p">.</span><span class="nx">state</span> <span class="o">===</span> <span class="nx">REGISTER</span><span class="p">)</span> <span class="p">{</span>
       <span class="nx">expect</span><span class="p">(</span><span class="nx">values</span><span class="p">.</span><span class="nx">passwordAgain</span><span class="p">).</span><span class="nx">toEqual</span><span class="p">(</span><span class="nx">props</span><span class="p">.</span><span class="nx">value</span><span class="p">.</span><span class="nx">passwordAgain</span><span class="p">);</span>          
       <span class="nx">expect</span><span class="p">(</span><span class="nx">fields</span><span class="p">.</span><span class="nx">passwordAgain</span><span class="p">.</span><span class="nx">editable</span><span class="p">).</span><span class="nx">toEqual</span><span class="p">(</span><span class="o">!</span><span class="nx">props</span><span class="p">.</span><span class="nx">form</span><span class="p">.</span><span class="nx">isFetching</span><span class="p">);</span>
       <span class="nx">expect</span><span class="p">(</span><span class="nx">fields</span><span class="p">.</span><span class="nx">passwordAgain</span><span class="p">.</span><span class="nx">hasError</span><span class="p">).</span><span class="nx">toEqual</span><span class="p">(</span><span class="nx">props</span><span class="p">.</span><span class="nx">form</span><span class="p">.</span><span class="nx">fields</span><span class="p">.</span><span class="nx">passwordAgainHasError</span><span class="p">);</span>    
@@ -398,7 +398,7 @@ component has the correct data</p>
 </div>
         </td>
         <td class="code highlight"><div class="highlight"><pre>
-  <span class="nx">describe</span><span class="p">(</span><span class="s1">&#39;LOGIN_STATE_REGISTER&#39;</span><span class="p">,</span> <span class="p">()</span> <span class="o">=&gt;</span> <span class="p">{</span>
+  <span class="nx">describe</span><span class="p">(</span><span class="s1">&#39;REGISTER&#39;</span><span class="p">,</span> <span class="p">()</span> <span class="o">=&gt;</span> <span class="p">{</span>
 
 </pre></div>
         </td>
@@ -431,7 +431,7 @@ component has the correct data</p>
           <span class="nx">passwordAgainHasError</span><span class="o">:</span> <span class="kc">false</span><span class="p">,</span>
           <span class="nx">showPassword</span><span class="o">:</span> <span class="kc">false</span>
         <span class="p">},</span>
-        <span class="nx">state</span><span class="o">:</span> <span class="nx">LOGIN_STATE_REGISTER</span>
+        <span class="nx">formType</span><span class="o">:</span> <span class="nx">REGISTER</span>
       <span class="p">};</span>
 
       <span class="kd">let</span> <span class="nx">value</span> <span class="o">=</span> <span class="p">{</span>
@@ -481,7 +481,7 @@ component has the correct data</p>
           <span class="nx">passwordAgainHasError</span><span class="o">:</span> <span class="kc">true</span><span class="p">,</span>
           <span class="nx">showPassword</span><span class="o">:</span> <span class="kc">false</span>
         <span class="p">},</span>
-        <span class="nx">state</span><span class="o">:</span> <span class="nx">LOGIN_STATE_REGISTER</span>
+        <span class="nx">formType</span><span class="o">:</span> <span class="nx">REGISTER</span>
       <span class="p">};</span>
 
       <span class="kd">let</span> <span class="nx">value</span> <span class="o">=</span> <span class="p">{</span>
@@ -531,7 +531,7 @@ component has the correct data</p>
           <span class="nx">passwordAgainHasError</span><span class="o">:</span> <span class="kc">true</span><span class="p">,</span>
           <span class="nx">showPassword</span><span class="o">:</span> <span class="kc">false</span>
         <span class="p">},</span>
-        <span class="nx">state</span><span class="o">:</span> <span class="nx">LOGIN_STATE_REGISTER</span>
+        <span class="nx">formType</span><span class="o">:</span> <span class="nx">REGISTER</span>
       <span class="p">};</span>
 
       <span class="kd">let</span> <span class="nx">value</span> <span class="o">=</span> <span class="p">{</span>
@@ -581,7 +581,7 @@ component has the correct data</p>
           <span class="nx">passwordAgainHasError</span><span class="o">:</span> <span class="kc">false</span><span class="p">,</span>
           <span class="nx">showPassword</span><span class="o">:</span> <span class="kc">true</span>
         <span class="p">},</span>
-        <span class="nx">state</span><span class="o">:</span> <span class="nx">LOGIN_STATE_REGISTER</span>
+        <span class="nx">formType</span><span class="o">:</span> <span class="nx">REGISTER</span>
       <span class="p">};</span>
 
       <span class="kd">let</span> <span class="nx">value</span> <span class="o">=</span> <span class="p">{</span>
@@ -622,7 +622,7 @@ component has the correct data</p>
 </div>
         </td>
         <td class="code highlight"><div class="highlight"><pre>
-  <span class="nx">describe</span><span class="p">(</span><span class="s1">&#39;LOGIN_STATE_LOGIN&#39;</span><span class="p">,</span> <span class="p">()</span> <span class="o">=&gt;</span> <span class="p">{</span>
+  <span class="nx">describe</span><span class="p">(</span><span class="s1">&#39;LOGIN&#39;</span><span class="p">,</span> <span class="p">()</span> <span class="o">=&gt;</span> <span class="p">{</span>
 
 </pre></div>
         </td>
@@ -653,7 +653,7 @@ component has the correct data</p>
           <span class="nx">passwordHasError</span><span class="o">:</span> <span class="kc">false</span><span class="p">,</span>
           <span class="nx">showPassword</span><span class="o">:</span> <span class="kc">false</span>
         <span class="p">},</span>
-        <span class="nx">state</span><span class="o">:</span> <span class="nx">LOGIN_STATE_LOGIN</span>
+        <span class="nx">formType</span><span class="o">:</span> <span class="nx">LOGIN</span>
       <span class="p">};</span>
 
       <span class="kd">let</span> <span class="nx">value</span> <span class="o">=</span> <span class="p">{</span>
@@ -698,7 +698,7 @@ component has the correct data</p>
           <span class="nx">usernameHasError</span><span class="o">:</span> <span class="kc">true</span><span class="p">,</span>
           <span class="nx">passwordHasError</span><span class="o">:</span> <span class="kc">true</span>
         <span class="p">},</span>
-        <span class="nx">state</span><span class="o">:</span> <span class="nx">LOGIN_STATE_LOGIN</span>
+        <span class="nx">formType</span><span class="o">:</span> <span class="nx">LOGIN</span>
       <span class="p">};</span>
 
       <span class="kd">let</span> <span class="nx">value</span> <span class="o">=</span> <span class="p">{</span>
@@ -744,7 +744,7 @@ component has the correct data</p>
           <span class="nx">passwordHasError</span><span class="o">:</span> <span class="kc">true</span><span class="p">,</span>
           <span class="nx">showPassword</span><span class="o">:</span> <span class="kc">false</span>
         <span class="p">},</span>
-        <span class="nx">state</span><span class="o">:</span> <span class="nx">LOGIN_STATE_LOGIN</span>
+        <span class="nx">formType</span><span class="o">:</span> <span class="nx">LOGIN</span>
       <span class="p">};</span>
 
       <span class="kd">let</span> <span class="nx">value</span> <span class="o">=</span> <span class="p">{</span>
@@ -790,7 +790,7 @@ component has the correct data</p>
           <span class="nx">passwordHasError</span><span class="o">:</span> <span class="kc">false</span><span class="p">,</span>
           <span class="nx">showPassword</span><span class="o">:</span> <span class="kc">true</span>
         <span class="p">},</span>
-        <span class="nx">state</span><span class="o">:</span> <span class="nx">LOGIN_STATE_LOGIN</span>
+        <span class="nx">formType</span><span class="o">:</span> <span class="nx">LOGIN</span>
       <span class="p">};</span>
 
       <span class="kd">let</span> <span class="nx">value</span> <span class="o">=</span> <span class="p">{</span>
@@ -828,7 +828,7 @@ component has the correct data</p>
 </div>
         </td>
         <td class="code highlight"><div class="highlight"><pre>
-  <span class="nx">describe</span><span class="p">(</span><span class="s1">&#39;LOGIN_STATE_FORGOT_PASSWORD&#39;</span><span class="p">,</span> <span class="p">()</span> <span class="o">=&gt;</span> <span class="p">{</span>
+  <span class="nx">describe</span><span class="p">(</span><span class="s1">&#39;FORGOT_PASSWORD&#39;</span><span class="p">,</span> <span class="p">()</span> <span class="o">=&gt;</span> <span class="p">{</span>
 
 </pre></div>
         </td>
@@ -858,7 +858,7 @@ component has the correct data</p>
           <span class="nx">emailHasError</span><span class="o">:</span> <span class="kc">false</span><span class="p">,</span>
           <span class="nx">showPassword</span><span class="o">:</span> <span class="kc">false</span>
         <span class="p">},</span>
-        <span class="nx">state</span><span class="o">:</span> <span class="nx">LOGIN_STATE_FORGOT_PASSWORD</span>
+        <span class="nx">formType</span><span class="o">:</span> <span class="nx">FORGOT_PASSWORD</span>
       <span class="p">};</span>
 
       <span class="kd">let</span> <span class="nx">value</span> <span class="o">=</span> <span class="p">{</span>
@@ -901,7 +901,7 @@ component has the correct data</p>
         <span class="nx">fields</span><span class="o">:</span> <span class="p">{</span>
           <span class="nx">emailHasError</span><span class="o">:</span> <span class="kc">true</span>
         <span class="p">},</span>
-        <span class="nx">state</span><span class="o">:</span> <span class="nx">LOGIN_STATE_FORGOT_PASSWORD</span>
+        <span class="nx">formType</span><span class="o">:</span> <span class="nx">FORGOT_PASSWORD</span>
       <span class="p">};</span>
 
       <span class="kd">let</span> <span class="nx">value</span> <span class="o">=</span> <span class="p">{</span>
@@ -946,7 +946,7 @@ component has the correct data</p>
           <span class="nx">emailHasError</span><span class="o">:</span> <span class="kc">true</span><span class="p">,</span>
           <span class="nx">showPassword</span><span class="o">:</span> <span class="kc">false</span>
         <span class="p">},</span>
-        <span class="nx">state</span><span class="o">:</span> <span class="nx">LOGIN_STATE_LOGIN</span>
+        <span class="nx">formType</span><span class="o">:</span> <span class="nx">LOGIN</span>
       <span class="p">};</span>
 
       <span class="kd">let</span> <span class="nx">value</span> <span class="o">=</span> <span class="p">{</span>
@@ -992,7 +992,7 @@ component has the correct data</p>
           <span class="nx">emailHasError</span><span class="o">:</span> <span class="kc">false</span><span class="p">,</span>
           <span class="nx">showPassword</span><span class="o">:</span> <span class="kc">true</span>
         <span class="p">},</span>
-        <span class="nx">state</span><span class="o">:</span> <span class="nx">LOGIN_STATE_FORGOT_PASSWORD</span>
+        <span class="nx">formType</span><span class="o">:</span> <span class="nx">FORGOT_PASSWORD</span>
       <span class="p">};</span>
 
       <span class="kd">let</span> <span class="nx">value</span> <span class="o">=</span> <span class="p">{</span>

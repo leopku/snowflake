@@ -6,7 +6,7 @@
   <link rel="stylesheet" media="all" href="../doc-style.css" />
   <script src="../doc-filelist.js"></script>
   <script>
-    var relativeDir = "../", thisFile = "Users/barton/projects/MFV/snowflake//components/ItemCheckbox.js", defaultSidebar = true;
+    var relativeDir = "../", thisFile = "Users/barton/projects/MFV/snowflake-pullrequest/snowflake//components/ItemCheckbox.js", defaultSidebar = true;
   </script>
   <script src="../doc-script.js"></script>
 </head>
@@ -35,12 +35,6 @@
       </div>
       <div class="heading h3">
         <a href="#_getcirclechecksytel">_getCircleCheckSytel</a>
-      </div>
-      <div class="heading h3">
-        <a href="#_geticonsize">_getIconSize</a>
-      </div>
-      <div class="heading h3">
-        <a href="#_getcircleiconstyle">_getCircleIconStyle</a>
       </div>
       <div class="heading h3">
         <a href="#_completeprogress">_completeProgress</a>
@@ -267,79 +261,6 @@
       <tr>
         <td class="docs"><div class="dox">
   <div class="summary">
-<div class="pilwrap" id="_geticonsize">
-  <h3>
-    <a href="#_geticonsize" name="_geticonsize" class="pilcrow">&#182;</a>
-    _getIconSize
-  </h3>
-</div>
-
-  </div>
-  <div class="body">
-  </div>
-  <div class="details">
-    <div class="dox_tag_title">Returns</div>
-    <div class="dox_tag_detail">
-      <span class="dox_tag_name"></span>
-      <span class="dox_type">Number</span>
-      <span>size </span>
-    </div>
-  </div>
-</div>
-        </td>
-        <td class="code highlight"><div class="highlight"><pre>
-  <span class="nx">_getIconSize</span><span class="o">:</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
-    <span class="k">if</span> <span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="nx">props</span><span class="p">.</span><span class="nx">iconSize</span> <span class="o">==</span> <span class="s1">&#39;small&#39;</span><span class="p">)</span> <span class="p">{</span>
-      <span class="k">return</span> <span class="k">this</span><span class="p">.</span><span class="nx">props</span><span class="p">.</span><span class="nx">size</span> <span class="o">*</span> <span class="mf">0.5</span><span class="p">;</span>
-    <span class="p">}</span> <span class="k">else</span> <span class="k">if</span> <span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="nx">props</span><span class="p">.</span><span class="nx">iconSize</span> <span class="o">==</span> <span class="s1">&#39;normal&#39;</span><span class="p">)</span> <span class="p">{</span>
-      <span class="k">return</span> <span class="k">this</span><span class="p">.</span><span class="nx">props</span><span class="p">.</span><span class="nx">size</span> <span class="o">*</span> <span class="mf">0.6</span><span class="p">;</span>
-    <span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
-      <span class="k">return</span> <span class="k">this</span><span class="p">.</span><span class="nx">props</span><span class="p">.</span><span class="nx">size</span> <span class="o">*</span> <span class="mf">0.7</span><span class="p">;</span>
-    <span class="p">}</span>
-  <span class="p">},</span>
-
-</pre></div>
-        </td>
-      </tr>
-      <tr>
-        <td class="docs"><div class="dox">
-  <div class="summary">
-<div class="pilwrap" id="_getcircleiconstyle">
-  <h3>
-    <a href="#_getcircleiconstyle" name="_getcircleiconstyle" class="pilcrow">&#182;</a>
-    _getCircleIconStyle
-  </h3>
-</div>
-
-  </div>
-  <div class="body">
-  </div>
-  <div class="details">
-    <div class="dox_tag_title">Returns</div>
-    <div class="dox_tag_detail">
-      <span class="dox_tag_name"></span>
-      <span class="dox_type">Object</span>
-      <span>style object</span>
-    </div>
-  </div>
-</div>
-        </td>
-        <td class="code highlight"><div class="highlight"><pre>
-  <span class="nx">_getCircleIconStyle</span><span class="o">:</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
-    <span class="k">return</span> <span class="p">{</span>
-      <span class="nx">color</span><span class="o">:</span> <span class="k">this</span><span class="p">.</span><span class="nx">props</span><span class="p">.</span><span class="nx">backgroundColor</span><span class="p">,</span>
-      <span class="nx">flex</span><span class="o">:</span> <span class="mi">1</span><span class="p">,</span>
-      <span class="nx">width</span><span class="o">:</span> <span class="k">this</span><span class="p">.</span><span class="nx">_getIconSize</span><span class="p">(),</span>
-      <span class="nx">height</span><span class="o">:</span> <span class="k">this</span><span class="p">.</span><span class="nx">_getIconSize</span><span class="p">()</span>
-    <span class="p">};</span>
-  <span class="p">},</span>
-
-</pre></div>
-        </td>
-      </tr>
-      <tr>
-        <td class="docs"><div class="dox">
-  <div class="summary">
 <div class="pilwrap" id="_completeprogress">
   <h3>
     <a href="#_completeprogress" name="_completeprogress" class="pilcrow">&#182;</a>
@@ -443,7 +364,6 @@ Set the <code>iconName</code> depending on if checked</p>
               <span class="o">&lt;</span><span class="nx">Icon</span>
                   <span class="nx">name</span><span class="o">=</span><span class="p">{</span><span class="nx">iconName</span><span class="p">}</span>
                   <span class="nx">size</span><span class="o">=</span><span class="p">{</span><span class="mi">20</span><span class="p">}</span>
-                  <span class="nx">style</span><span class="o">=</span><span class="p">{</span><span class="k">this</span><span class="p">.</span><span class="nx">_getCircleIconStyle</span><span class="p">}</span>
               <span class="o">/&gt;</span>
               <span class="o">&lt;</span><span class="nx">Text</span><span class="o">&gt;</span> <span class="p">{</span><span class="k">this</span><span class="p">.</span><span class="nx">props</span><span class="p">.</span><span class="nx">text</span><span class="p">}</span><span class="o">&lt;</span><span class="err">/Text&gt;</span>
             <span class="o">&lt;</span><span class="err">/View&gt;</span>
@@ -463,8 +383,6 @@ Set the <code>iconName</code> depending on if checked</p>
                 <span class="o">&lt;</span><span class="nx">Icon</span>
                     <span class="nx">name</span><span class="o">=</span><span class="p">{</span><span class="nx">iconName</span><span class="p">}</span>
                     <span class="nx">size</span><span class="o">=</span><span class="p">{</span><span class="mi">20</span><span class="p">}</span>
-                    <span class="nx">style</span><span class="o">=</span><span class="p">{</span><span class="k">this</span><span class="p">.</span><span class="nx">_getCircleIconStyle</span><span class="p">}</span>
-                    
                 <span class="o">/&gt;</span>
                 <span class="o">&lt;</span><span class="nx">Text</span><span class="o">&gt;</span> <span class="p">{</span><span class="k">this</span><span class="p">.</span><span class="nx">props</span><span class="p">.</span><span class="nx">text</span><span class="p">}</span><span class="o">&lt;</span><span class="err">/Text&gt;</span>
               <span class="o">&lt;</span><span class="err">/View&gt;</span>
