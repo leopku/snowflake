@@ -42,7 +42,9 @@ export default class Parse extends Backend{
     this._restAPIKey = CONFIG.PARSE.REST_API_KEY;
     this._masterKey = null;
 
-    this.API_BASE_URL= 'https://api.parse.com';
+    this.API_BASE_URL= CONFIG.backend.parseLocal ?
+      CONFIG.PARSE.local.url : CONFIG.PARSE.remote.url;
+
   }
   /**
    * ### signup
@@ -61,11 +63,12 @@ export default class Parse extends Backend{
   async signup(data) {
     return await this._fetch({
       method: 'POST',
-      url: '/1/users',
+      url: '/users',
       body: data
     })
       .then((response) => {
-        var json = JSON.parse(response._bodyInit);        
+        console.log(response);
+        var json = CONFIG.backend.parseLocal ? response._bodyInit : JSON.parse(response._bodyInit);      
         if (response.status === 200 || response.status === 201) {
           return json;
         } else {
@@ -106,10 +109,10 @@ export default class Parse extends Backend{
 
     return await this._fetch({
       method: 'GET',
-      url: '/1/login?' + formBody
+      url: '/login?' + formBody
     })
       .then((response) => {
-        var json = JSON.parse(response._bodyInit);
+        var json = CONFIG.backend.parseLocal ? response._bodyInit : JSON.parse(response._bodyInit);      
         if (response.status === 200 || response.status === 201) {
           return json;
         } else {
@@ -128,11 +131,11 @@ export default class Parse extends Backend{
   async logout() {
     return await this._fetch({
       method: 'POST',
-      url: '/1/logout',
+      url: '/logout',
       body: {}
     })
       .then((response) => {
-        var  res = JSON.parse(response._bodyInit);        
+        var res = CONFIG.backend.parseLocal ? response._bodyInit : JSON.parse(response._bodyInit);
         if ((response.status === 200 || response.status === 201)
             || //invalid session token
             (response.status === 400 && res.code === 209)) {
@@ -144,7 +147,6 @@ export default class Parse extends Backend{
       .catch((error) => {
         throw(error);
       });
-
   }
   /**
    * ### resetPassword
@@ -160,14 +162,14 @@ export default class Parse extends Backend{
   async resetPassword(data) {
     return await this._fetch({
       method: 'POST',
-      url: '/1/requestPasswordReset',
+      url: '/requestPasswordReset',
       body: data
     })
       .then((response) => {
         if ((response.status === 200 || response.status === 201)) {
           return {};
         } else {
-          var  res = JSON.parse(response._bodyInit);                  
+          var res = CONFIG.backend.parseLocal ? response._bodyInit :JSON.parse(response._bodyInit);                  
           throw(res);
         }
       })
@@ -195,10 +197,11 @@ export default class Parse extends Backend{
   async getProfile() {
     return await this._fetch({
       method: 'GET',
-      url: '/1/users/me'
+      url: '/users/me'
     })
       .then((response) => {
-        var  res = JSON.parse(response._bodyInit);
+        console.log(response);
+        var res = CONFIG.backend.parseLocal ? response._bodyInit : JSON.parse(response._bodyInit);
         if ((response.status === 200 || response.status === 201)) {
           return res;
         } else {
@@ -221,14 +224,14 @@ export default class Parse extends Backend{
   async updateProfile(userId,data) {
     return await this._fetch({
       method: 'PUT',
-      url: '/1/users/' + userId,
+      url: '/users/' + userId,
       body: data
     })
       .then((response) => {
         if ((response.status === 200 || response.status === 201)) {
           return {};
         } else {
-          var  res = JSON.parse(response._bodyInit);          
+          var res = CONFIG.backend.parseLocal ? response._bodyInit : JSON.parse(response._bodyInit);          
           throw(res);
         }
       })
@@ -256,6 +259,8 @@ export default class Parse extends Backend{
         'X-Parse-REST-API-Key': this._restAPIKey
       }
     };
+    console.log('```````````');
+    console.log(this._sessionToken);
     if (this._sessionToken) {
       reqOpts.headers['X-Parse-Session-Token'] = this._sessionToken;
     }
@@ -272,6 +277,10 @@ export default class Parse extends Backend{
     if (opts.body) {
       reqOpts.body = JSON.stringify(opts.body);
     }
+
+    console.log(this.API_BASE_URL);
+    console.log(opts);
+    console.log(reqOpts);
 
     return await fetch(this.API_BASE_URL + opts.url, reqOpts);
 

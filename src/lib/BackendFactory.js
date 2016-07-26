@@ -12,7 +12,7 @@ import Parse from './Parse';
 import Hapi from './Hapi';
 
 export default function BackendFactory(token = null) {
-  if (CONFIG.backend.parse) {
+  if (CONFIG.backend.parseLocal || CONFIG.backend.parseRemote) {
     return new Parse(token);
   } else if (CONFIG.backend.hapiLocal || CONFIG.backend.hapiRemote) {
     return new Hapi(token);

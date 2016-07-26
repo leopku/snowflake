@@ -2,10 +2,17 @@ module.exports = {
   PARSE: {
     APP_ID: '',
     REST_API_KEY: '',
-    SESSION_TOKEN_KEY: 'SESSION_TOKEN_KEY'
+    SESSION_TOKEN_KEY: 'SESSION_TOKEN_KEY',
+    local: {
+      url: 'http://localhost:8080/parse'
+    },
+    remote: {
+      url: 'https://api.parse.com/1'
+    }    
   },
   backend: {
-    parse: false,
+    parseLocal: false,
+    parseRemote: false,
     hapiRemote: false,
     hapiLocal: true
   },

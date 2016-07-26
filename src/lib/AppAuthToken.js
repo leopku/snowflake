@@ -50,6 +50,7 @@ export default class AppAuthToken {
         return store.get(this.SESSION_TOKEN_KEY);
       });
     }
+    console.log(this.SESSION_TOKEN_KEY);
     return store.get(this.SESSION_TOKEN_KEY);
   }
   /**
